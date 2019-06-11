@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="API\" />
+    <Folder Include="Parser\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Goal.cs" />
@@ -39,6 +40,7 @@
     <Compile Include="Model\Team.cs" />
     <Compile Include="API\IOLDBApi.cs" />
     <Compile Include="API\OLDBApi.cs" />
+    <Compile Include="Parser\OLDBParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
