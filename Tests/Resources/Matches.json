@@ -1,0 +1,69 @@
+﻿[
+  {
+    "MatchID": 12345,
+    "MatchDateTime": "2019-05-29T20:30:00",
+    "TimeZoneID": "W. Europe Standard Time",
+    "LeagueId": 54321,
+    "LeagueName": "Some league name",
+    "MatchDateTimeUTC": "2019-05-29T19:30:00Z",
+    "Group": {
+      "GroupName": "Some group name",
+      "GroupOrderID": 1,
+      "GroupID": 67890
+    },
+    "Team1": {
+      "TeamId": 1,
+      "TeamName": "Team 1",
+      "ShortName": "T 1",
+      "TeamIconUrl": "https://team1_logo.png"
+    },
+    "Team2": {
+      "TeamId": 2,
+      "TeamName": "Team 2",
+      "ShortName": "T 2",
+      "TeamIconUrl": "https://team2_logo.png"
+    },
+    "LastUpdateDateTime": "2019-05-29T22:30:00.00",
+    "MatchIsFinished": true,
+    "MatchResults": [
+      {
+        "ResultID": 100,
+        "ResultName": "Halbzeitergebnis",
+        "PointsTeam1": 0,
+        "PointsTeam2": 0,
+        "ResultOrderID": 1,
+        "ResultTypeID": 1,
+        "ResultDescription": "Ergebnis zur Halbzeit"
+      },
+      {
+        "ResultID": 101,
+        "ResultName": "Endergebnis",
+        "PointsTeam1": 1,
+        "PointsTeam2": 0,
+        "ResultOrderID": 2,
+        "ResultTypeID": 2,
+        "ResultDescription": "Ergebnis nach Spielende"
+      }
+    ],
+    "Goals": [
+      {
+        "GoalID": 1000,
+        "ScoreTeam1": 1,
+        "ScoreTeam2": 0,
+        "MatchMinute": 95,
+        "GoalGetterID": 13579,
+        "GoalGetterName": "Messi",
+        "IsPenalty": true,
+        "IsOwnGoal": false,
+        "IsOvertime": true,
+        "Comment": "What a goal"
+      }
+    ],
+    "Location": {
+      "LocationCity": "Some city",
+      "LocationID": 98765,
+      "LocationStadium": "Some stadium"
+    },
+    "NumberOfViewers": 42000
+  }
+]
