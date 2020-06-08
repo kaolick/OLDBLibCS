@@ -6,31 +6,19 @@ namespace OLDBLibCS.Parser
 {
     public class OLDBParser
     {
-        public Group ParseGroup(string json,
-            NullValueHandling nullValueHandling = NullValueHandling.Ignore,
-            MissingMemberHandling missingMemberHandling = MissingMemberHandling.Ignore)
-        {
-            var settings = CreateSettings(nullValueHandling, missingMemberHandling);
-            return JsonConvert.DeserializeObject<Group>(json, settings);
-        }
+        readonly JsonSerializerSettings _settings;
 
-        public List<Match> ParseMatches(string json,
-            NullValueHandling nullValueHandling = NullValueHandling.Ignore,
-            MissingMemberHandling missingMemberHandling = MissingMemberHandling.Ignore)
+        public OLDBParser()
         {
-            var settings = CreateSettings(nullValueHandling, missingMemberHandling);
-            return JsonConvert.DeserializeObject<List<Match>>(json, settings);
-        }
-
-        JsonSerializerSettings CreateSettings(
-            NullValueHandling nullValueHandling,
-            MissingMemberHandling missingMemberHandling)
-        {
-            return new JsonSerializerSettings
+            _settings = new JsonSerializerSettings
             {
-                NullValueHandling = nullValueHandling,
-                MissingMemberHandling = missingMemberHandling
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
             };
         }
+
+        public Group ParseGroup(string json) => JsonConvert.DeserializeObject<Group>(json, _settings);
+
+        public List<Match> ParseMatches(string json) => JsonConvert.DeserializeObject<List<Match>>(json, _settings);
     }
 }
