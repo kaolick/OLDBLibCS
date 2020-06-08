@@ -25,6 +25,11 @@ namespace OLDBLibCS.API
             return await _oldbApi.GetCurrentGroup(leagueShortcut, cancellationToken);
         }
 
+        public async Task<string> GetMatchData(string leagueShortcut, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(leagueShortcut, cancellationToken);
+        }
+
         public async Task<string> GetMatchData(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, cancellationToken);
@@ -33,6 +38,11 @@ namespace OLDBLibCS.API
         public async Task<string> GetMatchData(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, groupOrderId, cancellationToken);
+        }
+
+        public async Task<string> GetMatchData(int matchId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(matchId, cancellationToken);
         }
     }
 }

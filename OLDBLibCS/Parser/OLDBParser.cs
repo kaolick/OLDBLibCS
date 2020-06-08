@@ -19,6 +19,8 @@ namespace OLDBLibCS.Parser
 
         public Group ParseGroup(string json) => JsonConvert.DeserializeObject<Group>(json, _settings);
 
+        public Match ParseMatch(string json) => JsonConvert.DeserializeObject<Match>(json, _settings);
+
         public List<Match> ParseMatches(string json) => JsonConvert.DeserializeObject<List<Match>>(json, _settings);
     }
 }
