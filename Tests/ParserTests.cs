@@ -8,14 +8,14 @@ namespace OLDBLibCS.Tests
     {
         OLDBParser _parser;
 
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             _parser = new OLDBParser();
         }
 
         [Test]
-        public void ParseGroup_WhenCalled_GetGroup()
+        public void ParseGroup()
         {
             var json = FileReader.ReadTextFromFile("CurrentGroup.json");
             var group = _parser.ParseGroup(json);
@@ -26,7 +26,7 @@ namespace OLDBLibCS.Tests
         }
 
         [Test]
-        public void ParseMatches_WhenCalled_GetMatches()
+        public void ParseMatches()
         {
             var json = FileReader.ReadTextFromFile("Matches.json");
             var matches = _parser.ParseMatches(json);
