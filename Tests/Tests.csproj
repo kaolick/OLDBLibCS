@@ -21,8 +21,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiTests.cs" />
-    <Compile Include="ParserTests.cs" />
-    <Compile Include="FileReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -34,16 +32,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Resources\Matches.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OLDBLibCS\OLDBLibCS.csproj">
       <Project>{A527BE5B-855C-470B-B4B3-535A457F6B32}</Project>
       <Name>OLDBLibCS</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\CurrentGroup.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
