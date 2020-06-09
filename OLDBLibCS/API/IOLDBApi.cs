@@ -14,6 +14,9 @@ namespace OLDBLibCS.API
         [Get("/api/getcurrentgroup/{leagueShortcut}")]
         Task<Group> GetCurrentGroup(string leagueShortcut, CancellationToken cancellationToken);
 
+        [Get("/api/getlastchangedate/{leagueShortcut}/{leagueSeason}/{groupOrderId}")]
+        Task<string> GetLastChangeDate(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken);
+
         [Get("/api/getmatchdata/{leagueShortcut}")]
         Task<List<Match>> GetMatchData(string leagueShortcut, CancellationToken cancellationToken);
 

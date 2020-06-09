@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -34,6 +36,15 @@ namespace OLDBLibCS.Tests
             var group = await _api.GetCurrentGroup("bl1", _cts.Token);
 
             Assert.IsInstanceOf<Group>(group);
+        }
+
+        [Test]
+        public async Task GetLastChangeDate()
+        {
+            var timestamp = await _api.GetLastChangeDate("bl1", 2018, 34, _cts.Token);
+
+            var dateTime = DateTime.ParseExact(timestamp.Replace("\"", ""), "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+            Assert.IsInstanceOf<DateTime>(dateTime);
         }
 
         [Test]
