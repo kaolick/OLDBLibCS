@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OLDBLibCS.API;
-using OLDBLibCS.Extensions;
 using OLDBLibCS.Model;
 
 namespace OLDBLibCS.Tests
@@ -61,7 +59,5 @@ namespace OLDBLibCS.Tests
 
             Assert.IsInstanceOf<Match>(match);
         }
-
-        void LogJson(string json) => Console.WriteLine(json.PrettifyJson());
     }
 }
