@@ -8,6 +8,9 @@ namespace OLDBLibCS.API
 {
     public interface IOLDBApi
     {
+        [Get("/api/getavailablegroups/{leagueShortcut}/{leagueSeason}")]
+        Task<List<Group>> GetAvailableGroups(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken);
+
         [Get("/api/getcurrentgroup/{leagueShortcut}")]
         Task<Group> GetCurrentGroup(string leagueShortcut, CancellationToken cancellationToken);
 

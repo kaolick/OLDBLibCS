@@ -21,6 +21,11 @@ namespace OLDBLibCS.API
             _oldbApi = RestService.For<IOLDBApi>(client, refitSettings);
         }
 
+        public async Task<List<Group>> GetAvailableGroups(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetAvailableGroups(leagueShortcut, leagueSeason, cancellationToken);
+        }
+
         public async Task<Group> GetCurrentGroup(string leagueShortcut, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetCurrentGroup(leagueShortcut, cancellationToken);

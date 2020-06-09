@@ -21,6 +21,14 @@ namespace OLDBLibCS.Tests
         }
 
         [Test]
+        public async Task GetAvailableGroups()
+        {
+            var groups = await _api.GetAvailableGroups("bl1", 2018, _cts.Token);
+
+            Assert.IsInstanceOf<List<Group>>(groups);
+        }
+
+        [Test]
         public async Task GetCurrentGroup()
         {
             var group = await _api.GetCurrentGroup("bl1", _cts.Token);
