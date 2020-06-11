@@ -47,6 +47,14 @@ namespace OLDBLibCS.Tests
         }
 
         [Test]
+        public async Task GetGoalGetters()
+        {
+            var goalGetters = await _api.GetGoalGetters("bl1", 2018, _cts.Token);
+
+            Assert.IsInstanceOf<List<GoalGetter>>(goalGetters);
+        }
+
+        [Test]
         public async Task GetLastChangeDate()
         {
             var timestamp = await _api.GetLastChangeDate("bl1", 2018, 34, _cts.Token);

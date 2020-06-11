@@ -39,6 +39,7 @@
     <Compile Include="Model\Team.cs" />
     <Compile Include="API\IOLDBApi.cs" />
     <Compile Include="API\OLDBApi.cs" />
+    <Compile Include="Model\GoalGetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
