@@ -26,6 +26,11 @@ namespace OLDBLibCS.API
             return await _oldbApi.GetAvailableGroups(leagueShortcut, leagueSeason, cancellationToken);
         }
 
+        public async Task<List<Team>> GetAvailableTeams(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetAvailableTeams(leagueShortcut, leagueSeason, cancellationToken);
+        }
+
         public async Task<Group> GetCurrentGroup(string leagueShortcut, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetCurrentGroup(leagueShortcut, cancellationToken);
