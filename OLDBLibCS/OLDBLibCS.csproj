@@ -40,6 +40,7 @@
     <Compile Include="API\IOLDBApi.cs" />
     <Compile Include="API\OLDBApi.cs" />
     <Compile Include="Model\GoalGetter.cs" />
+    <Compile Include="Model\BLTableTeam.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
