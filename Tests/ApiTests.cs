@@ -88,6 +88,14 @@ namespace OLDBLibCS.Tests
         }
 
         [Test]
+        public async Task GetMatchDataForTwoTeams()
+        {
+            var matches = await _api.GetMatchData(7, 9, _cts.Token);
+
+            Assert.IsInstanceOf<List<Match>>(matches);
+        }
+
+        [Test]
         public async Task GetNextMatch()
         {
             var match = await _api.GetNextMatchByLeagueTeam(4362, 9, _cts.Token);

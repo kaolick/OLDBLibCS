@@ -61,6 +61,11 @@ namespace OLDBLibCS.API
             return await _oldbApi.GetMatchData(matchId, cancellationToken);
         }
 
+        public async Task<List<Match>> GetMatchData(int team1Id, int team2Id, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(team1Id, team2Id, cancellationToken);
+        }
+
         public async Task<Match> GetNextMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetNextMatchByLeagueTeam(leagueId, teamId, cancellationToken);

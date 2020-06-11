@@ -32,6 +32,9 @@ namespace OLDBLibCS.API
         [Get("/api/getmatchdata/{matchId}")]
         Task<Match> GetMatchData(int matchId, CancellationToken cancellationToken);
 
+        [Get("/api/getmatchdata/{team1Id}/{team2Id}")]
+        Task<List<Match>> GetMatchData(int team1Id, int team2Id, CancellationToken cancellationToken);
+
         [Get("/api/getnextmatchbyleagueteam/{leagueId}/{teamId}")]
         Task<Match> GetNextMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken);
     }
