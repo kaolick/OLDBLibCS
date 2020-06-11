@@ -28,5 +28,8 @@ namespace OLDBLibCS.API
 
         [Get("/api/getmatchdata/{matchId}")]
         Task<Match> GetMatchData(int matchId, CancellationToken cancellationToken);
+
+        [Get("/api/getnextmatchbyleagueteam/{leagueId}/{teamId}")]
+        Task<Match> GetNextMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken);
     }
 }

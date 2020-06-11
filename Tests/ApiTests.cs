@@ -78,5 +78,13 @@ namespace OLDBLibCS.Tests
 
             Assert.IsInstanceOf<Match>(match);
         }
+
+        [Test]
+        public async Task GetNextMatch()
+        {
+            var match = await _api.GetNextMatchByLeagueTeam(4362, 9, _cts.Token);
+
+            Assert.IsInstanceOf<Match>(match);
+        }
     }
 }
