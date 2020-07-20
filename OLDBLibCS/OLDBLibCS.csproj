@@ -1,106 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{A527BE5B-855C-470B-B4B3-535A457F6B32}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>OLDBLibCS</RootNamespace>
-    <AssemblyName>OLDBLibCS</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>OLDBLibCS</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.1.0</PackageVersion>
     <Authors>kaolick</Authors>
     <Copyright>kaolick 2020</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/kaolick/OLDBLibCS/LICENSE.md</PackageLicenseUrl>
     <Owners>kaolick</Owners>
     <PackageProjectUrl>https://github.com/kaolick/OLDBLibCS</PackageProjectUrl>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Turned into .NET standard 2.0</PackageReleaseNotes>
     <Summary>An easy-to-use C# API for openligadb.de</Summary>
     <PackageTags>OpenligaDB.de API Bundesliga Soccer</PackageTags>
     <Title>OLDBLibCS</Title>
     <Description>An easy-to-use C# API for openligadb.de</Description>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="API\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Goal.cs" />
-    <Compile Include="Model\Group.cs" />
-    <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\Match.cs" />
-    <Compile Include="Model\MatchResult.cs" />
-    <Compile Include="Model\Team.cs" />
-    <Compile Include="API\IOLDBApi.cs" />
-    <Compile Include="API\OLDBApi.cs" />
-    <Compile Include="Model\GoalGetter.cs" />
-    <Compile Include="Model\BLTableTeam.cs" />
+    <PackageReference Include="refit" Version="5.1.67" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Refit">
-      <HintPath>..\packages\Refit.5.1.67\lib\net461\Refit.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System" />
-    <Reference Include="System.Buffers">
-      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib" />
-    <Reference Include="System.Numerics.Vectors">
-      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Memory">
-      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web">
-      <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json">
-      <HintPath>..\packages\System.Text.Json.4.7.1\lib\net461\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Refit.5.1.67\build\net461\refit.targets" Condition="Exists('..\packages\Refit.5.1.67\build\net461\refit.targets')" />
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.5-dev.8\build\NuGet.Build.Packaging.targets')" />
 </Project>
