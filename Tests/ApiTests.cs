@@ -114,7 +114,7 @@ namespace OLDBLibCS.Tests
         [Test]
         public async Task GetNextMatch()
         {
-            var match = await _api.GetNextMatchByLeagueTeam(4362, 9, _cts.Token);
+            var match = await _api.GetNextMatchByLeagueTeam(4608, 40, _cts.Token);
 
             Assert.IsInstanceOf<Match>(match);
         }
