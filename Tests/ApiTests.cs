@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
@@ -118,5 +120,48 @@ namespace OLDBLibCS.Tests
 
             Assert.IsInstanceOf<Match>(match);
         }
+
+        #region DFB-Pokal helper
+
+        [Test]
+        public async Task WriteTeamIdsToFile()
+        {
+            var teams = await _api.GetAvailableTeams("dfb", 2023, _cts.Token);
+            var teamIds = teams.Select(t => t.Id).OrderBy(i => i);
+            var folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var fileName = "TeamIds.txt";
+            var lines = new List<string>();
+
+            foreach (var id in teamIds)
+                lines.Add($"{id},");
+
+            WriteLineToFile(Path.Combine(folder, fileName), lines);
+        }
+
+        [Test]
+        public async Task WriteTeamStoreEntriesToFile()
+        {
+            var teams = await _api.GetAvailableTeams("dfb", 2023, _cts.Token);
+            var orderedTeams = teams.OrderBy(t => t.Id);
+            var folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var fileName = "TeamStoreEntries.txt";
+            var lines = new List<string>();
+
+            foreach (var team in orderedTeams)
+                lines.Add($"_teamDataDictionary.Add({team.Id}, new TeamData(\"{team.Name}\", \"{team.ShortName}\", \"{team.ShortName}\"));");
+
+            WriteLineToFile(Path.Combine(folder, fileName), lines);
+        }
+
+        private void WriteLineToFile(string path, List<string> lines)
+        {
+            using (StreamWriter outputFile = new StreamWriter(path))
+            {
+                foreach (string line in lines)
+                    outputFile.WriteLine(line);
+            }
+        }
+
+        #endregion
     }
 }
