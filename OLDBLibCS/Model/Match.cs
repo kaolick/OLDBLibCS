@@ -32,7 +32,11 @@ namespace OLDBLibCS.Model
         [JsonPropertyName("leagueName")]
         public string LeagueName { get; set; }
 
+        [JsonPropertyName("leagueSeason")]
+        public int LeagueSeason { get; set; }
 
+        [JsonPropertyName("leagueShortcut")]
+        public string LeagueShortcut { get; set; }
 
         [JsonPropertyName("location")]
         public Location Location { get; set; }
