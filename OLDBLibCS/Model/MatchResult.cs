@@ -1,28 +1,28 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class MatchResult
     {
-        [JsonProperty("ResultDescription")]
+        [JsonPropertyName("resultDescription")]
         public string Description { get; set; }
 
-        [JsonProperty("ResultID")]
+        [JsonPropertyName("resultID")]
         public int Id { get; set; }
 
-        [JsonProperty("ResultName")]
+        [JsonPropertyName("resultName")]
         public string Name { get; set; }
 
-        [JsonProperty("ResultOrderID")]
+        [JsonPropertyName("resultOrderID")]
         public int OrderId { get; set; }
 
-        [JsonProperty("PointsTeam1")]
-        public int PointsTeam1 { get; set; }
+        [JsonPropertyName("pointsTeam1")]
+        public int? PointsTeam1 { get; set; }
 
-        [JsonProperty("PointsTeam2")]
-        public int PointsTeam2 { get; set; }
+        [JsonPropertyName("pointsTeam2")]
+        public int? PointsTeam2 { get; set; }
 
-        [JsonProperty("ResultTypeID")]
+        [JsonPropertyName("resultTypeID")]
         public int TypeId { get; set; }
     }
 }

@@ -1,43 +1,43 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
-    public class BLTableTeam
+    public class BlTableTeam
     {
-        [JsonProperty("Draw")]
+        [JsonPropertyName("draw")]
         public int Draw { get; set; }
 
-        [JsonProperty("GoalDiff")]
+        [JsonPropertyName("goalDiff")]
         public int GoalDiff { get; set; }
 
-        [JsonProperty("Goals")]
+        [JsonPropertyName("goals")]
         public int Goals { get; set; }
 
-        [JsonProperty("TeamIconUrl")]
+        [JsonPropertyName("teamIconUrl")]
         public string IconUrl { get; set; }
 
-        [JsonProperty("TeamInfoId")]
+        [JsonPropertyName("teamInfoId")]
         public int InfoId { get; set; }
 
-        [JsonProperty("Lost")]
+        [JsonPropertyName("lost")]
         public int Lost { get; set; }
 
-        [JsonProperty("Matches")]
+        [JsonPropertyName("matches")]
         public int Matches { get; set; }
 
-        [JsonProperty("TeamName")]
+        [JsonPropertyName("teamName")]
         public string Name { get; set; }
 
-        [JsonProperty("OpponentGoals")]
+        [JsonPropertyName("opponentGoals")]
         public int OpponentGoals { get; set; }
 
-        [JsonProperty("Points")]
+        [JsonPropertyName("points")]
         public int Points { get; set; }
 
-        [JsonProperty("ShortName")]
+        [JsonPropertyName("shortName")]
         public string ShortName { get; set; }
 
-        [JsonProperty("Won")]
+        [JsonPropertyName("won")]
         public int Won { get; set; }
     }
 }

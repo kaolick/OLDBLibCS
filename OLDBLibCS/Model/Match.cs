@@ -1,53 +1,55 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class Match
     {
-        [JsonProperty("MatchDateTime")]
-        public string DateTime { get; private set; }
+        [JsonPropertyName("matchDateTime")]
+        public string DateTime { get; set; }
 
-        [JsonProperty("MatchDateTimeUTC")]
-        public string DateTimeUTC { get; private set; }
+        [JsonPropertyName("matchDateTimeUTC")]
+        public string DateTimeUTC { get; set; }
 
-        [JsonProperty("Goals")]
+        [JsonPropertyName("goals")]
         public List<Goal> Goals { get; set; }
 
-        [JsonProperty("Group")]
+        [JsonPropertyName("group")]
         public Group Group { get; set; }
 
-        [JsonProperty("MatchID")]
-        public int Id { get; private set; }
+        [JsonPropertyName("matchID")]
+        public int Id { get; set; }
 
-        [JsonProperty("MatchIsFinished")]
-        public bool IsFinished { get; private set; }
+        [JsonPropertyName("matchIsFinished")]
+        public bool IsFinished { get; set; }
 
-        [JsonProperty("LastUpdateDateTime")]
+        [JsonPropertyName("lastUpdateDateTime")]
         public string LastUpdateDateTime { get; set; }
 
-        [JsonProperty("LeagueId")]
-        public int LeagueId { get; private set; }
+        [JsonPropertyName("leagueId")]
+        public int LeagueId { get; set; }
 
-        [JsonProperty("LeagueName")]
-        public string LeagueName { get; private set; }
+        [JsonPropertyName("leagueName")]
+        public string LeagueName { get; set; }
 
-        [JsonProperty("Location")]
-        public Location Location { get; private set; }
 
-        [JsonProperty("NumberOfViewers")]
-        public int NumberOfViewers { get; private set; }
 
-        [JsonProperty("MatchResults")]
-        public List<MatchResult> Results { get; private set; }
+        [JsonPropertyName("location")]
+        public Location Location { get; set; }
 
-        [JsonProperty("Team1")]
-        public Team Team1 { get; private set; }
+        [JsonPropertyName("numberOfViewers")]
+        public int? NumberOfViewers { get; set; }
 
-        [JsonProperty("Team2")]
-        public Team Team2 { get; private set; }
+        [JsonPropertyName("matchResults")]
+        public List<MatchResult> Results { get; set; }
 
-        [JsonProperty("TimeZoneID")]
-        public string TimeZoneID { get; private set; }
+        [JsonPropertyName("team1")]
+        public Team Team1 { get; set; }
+
+        [JsonPropertyName("team2")]
+        public Team Team2 { get; set; }
+
+        [JsonPropertyName("timeZoneID")]
+        public string TimeZoneID { get; set; }
     }
 }

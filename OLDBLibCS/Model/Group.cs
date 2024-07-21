@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class Group
     {
-        [JsonProperty("GroupID")]
+        [JsonPropertyName("GroupID")]
         public int Id { get; set; }
 
-        [JsonProperty("GroupName")]
+        [JsonPropertyName("GroupName")]
         public string Name { get; set; }
 
-        [JsonProperty("GroupOrderID")]
+        [JsonPropertyName("GroupOrderID")]
         public int OrderId { get; set; }
     }
 }

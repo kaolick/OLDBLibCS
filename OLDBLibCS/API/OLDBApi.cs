@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using OLDBLibCS.Model;
 using Refit;
 
@@ -92,15 +93,17 @@ namespace OLDBLibCS.API
 
         RefitSettings CreateRefitSettings()
         {
-            var jsonSettings = new JsonSerializerSettings
+            var jsonSettings = new JsonSerializerOptions
             {
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore
+                AllowTrailingCommas = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                PropertyNameCaseInsensitive = true,
+                ReadCommentHandling = JsonCommentHandling.Skip,
             };
 
             return new RefitSettings
             {
-                ContentSerializer = new NewtonsoftJsonContentSerializer(jsonSettings)
+                ContentSerializer = new SystemTextJsonContentSerializer(jsonSettings)
             };
         }
     }

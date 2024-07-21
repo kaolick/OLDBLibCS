@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class Location
     {
-        [JsonProperty("LocationCity")]
+        [JsonPropertyName("locationCity")]
         public string City { get; set; }
 
-        [JsonProperty("LocationID")]
+        [JsonPropertyName("locationID")]
         public int Id { get; set; }
 
-        [JsonProperty("LocationStadium")]
+        [JsonPropertyName("locationStadium")]
         public string Stadium { get; set; }
     }
 }

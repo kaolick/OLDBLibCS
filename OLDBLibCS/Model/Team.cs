@@ -1,22 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class Team
     {
-        [JsonProperty("TeamGroupName")]
+        [JsonPropertyName("teamGroupName")]
         public string GroupName { get; set; }
 
-        [JsonProperty("TeamIconUrl")]
+        [JsonPropertyName("teamIconUrl")]
         public string IconUrl { get; set; }
 
-        [JsonProperty("TeamId")]
+        [JsonPropertyName("teamId")]
         public int Id { get; set; }
 
-        [JsonProperty("TeamName")]
+        [JsonPropertyName("teamName")]
         public string Name { get; set; }
 
-        [JsonProperty("ShortName")]
+        [JsonPropertyName("shortName")]
         public string ShortName { get; set; }
     }
 }

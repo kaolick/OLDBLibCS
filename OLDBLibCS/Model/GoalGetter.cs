@@ -1,16 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
     public class GoalGetter
     {
-        [JsonProperty("GoalCount")]
+        [JsonPropertyName("GoalCount")]
         public int GoalCount { get; set; }
 
-        [JsonProperty("GoalGetterId")]
-        public int GoalGetterId { get; set; }
+        [JsonPropertyName("GoalGetterId")]
+        public int Id { get; set; }
 
-        [JsonProperty("GoalGetterName")]
-        public string GoalGetterName { get; set; }
+        [JsonPropertyName("GoalGetterName")]
+        public string Name { get; set; }
     }
 }
