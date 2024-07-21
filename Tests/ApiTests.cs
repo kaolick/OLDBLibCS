@@ -1,129 +1,160 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using System.Globalization;
 using OLDBLibCS.API;
 using OLDBLibCS.Model;
 
 namespace OLDBLibCS.Tests
 {
-    [TestFixture]
     public class ApiTests
     {
-        OLDBApi _api;
-        CancellationTokenSource _cts;
+        readonly OLDBApi _api;
+        readonly CancellationTokenSource _cts;
 
-        [SetUp]
-        public void SetUp()
+        public ApiTests()
         {
             _api = new OLDBApi();
             _cts = new CancellationTokenSource();
         }
 
-        [Test]
+        [Fact]
         public async Task GetAvailableGroups()
         {
-            var groups = await _api.GetAvailableGroups("bl1", 2018, _cts.Token);
+            var groups = await _api.GetAvailableGroups("bl1", 2023, _cts.Token);
 
-            Assert.IsInstanceOf<List<Group>>(groups);
+            Assert.IsType<List<Group>>(groups);
         }
 
-        [Test]
+        [Fact]
+        public async Task GetAvailableLeagues()
+        {
+            var leagues = await _api.GetAvailableLeagues(_cts.Token);
+
+            Assert.IsType<List<League>>(leagues);
+        }
+        
+        [Fact]
+        public async Task GetAvailableSports()
+        {
+            var sports = await _api.GetAvailableSports(_cts.Token);
+
+            Assert.IsType<List<Sport>>(sports);
+        }
+
+        [Fact]
         public async Task GetAvailableTeams()
         {
-            var teams = await _api.GetAvailableTeams("bl1", 2018, _cts.Token);
+            var teams = await _api.GetAvailableTeams("bl1", 2023, _cts.Token);
 
-            Assert.IsInstanceOf<List<Team>>(teams);
+            Assert.IsType<List<Team>>(teams);
         }
 
-        [Test]
-        public async Task GetBLTable()
+        [Fact]
+        public async Task GetBlTable()
         {
-            var teams = await _api.GetBLTable("bl1", 2018, _cts.Token);
+            var teams = await _api.GetBlTable("bl1", 2023, _cts.Token);
 
-            Assert.IsInstanceOf<List<BLTableTeam>>(teams);
+            Assert.IsType<List<BlTableTeam>>(teams);
         }
 
-        [Test]
+        [Fact]
         public async Task GetCurrentGroup()
         {
             var group = await _api.GetCurrentGroup("bl1", _cts.Token);
 
-            Assert.IsInstanceOf<Group>(group);
+            Assert.IsType<Group>(group);
         }
 
-        [Test]
+        [Fact]
         public async Task GetGoalGetters()
         {
-            var goalGetters = await _api.GetGoalGetters("bl1", 2018, _cts.Token);
+            var goalGetters = await _api.GetGoalGetters("bl1", 2023, _cts.Token);
 
-            Assert.IsInstanceOf<List<GoalGetter>>(goalGetters);
+            Assert.IsType<List<GoalGetter>>(goalGetters);
         }
 
-        [Test]
+        //[Fact]
+        //public async Task GetGroupTable()
+        //{
+        //    var teams = await _api.GetGroupTable("bl1", 2023, _cts.Token);
+
+        //    Assert.IsType<List<BlTableTeam>>(teams);
+        //}
+
+        [Fact]
         public async Task GetLastChangeDate()
         {
-            var timestamp = await _api.GetLastChangeDate("bl1", 2018, 34, _cts.Token);
+            var timestamp = await _api.GetLastChangeDate("bl1", 2023, 34, _cts.Token);
 
             var dateTime = DateTime.ParseExact(timestamp.Replace("\"", ""), "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
-            Assert.IsInstanceOf<DateTime>(dateTime);
+            Assert.IsType<DateTime>(dateTime);
         }
 
-        [Test]
-        public async Task GetMatchDataForCurrentMatchday()
+        [Fact]
+        public async Task GetMatchDataForCertainTeamForCompleteSeason()
         {
-            var matches = await _api.GetMatchData("bl1", _cts.Token);
+            var matches = await _api.GetMatchData("bl1", 2023, "Dortmund", _cts.Token);
 
-            Assert.IsInstanceOf<List<Match>>(matches);
+            Assert.IsType<List<Match>>(matches);
         }
 
-        [Test]
+        [Fact]
         public async Task GetMatchDataForCompleteSeason()
         {
-            var matches = await _api.GetMatchData("bl1", 2018, _cts.Token);
+            var matches = await _api.GetMatchData("bl1", 2023, _cts.Token);
 
-            Assert.IsInstanceOf<List<Match>>(matches);
+            Assert.IsType<List<Match>>(matches);
         }
 
-        [Test]
+        [Fact]
         public async Task GetMatchDataForCertainMatchday()
         {
-            var matches = await _api.GetMatchData("bl1", 2018, 34, _cts.Token);
+            var matches = await _api.GetMatchData("bl1", 2023, 34, _cts.Token);
 
-            Assert.IsInstanceOf<List<Match>>(matches);
+            Assert.IsType<List<Match>>(matches);
         }
 
-        [Test]
+        [Fact]
         public async Task GetMatchDataForCertainMatch()
         {
             var match = await _api.GetMatchData(51417, _cts.Token);
 
-            Assert.IsInstanceOf<Match>(match);
+            Assert.IsType<Match>(match);
         }
 
-        [Test]
+        [Fact]
         public async Task GetMatchDataForTwoTeams()
         {
             var matches = await _api.GetMatchData(7, 9, _cts.Token);
 
-            Assert.IsInstanceOf<List<Match>>(matches);
+            Assert.IsType<List<Match>>(matches);
         }
 
-        [Test]
+        [Fact]
+        public async Task GetMatchesByTeam()
+        {
+            var matches = await _api.GetMatchesByTeam("Dortmund", 12, 4, _cts.Token);
+
+            Assert.IsType<List<Match>>(matches);
+        }
+
+        [Fact]
+        public async Task GetMatchesByTeamId()
+        {
+            var matches = await _api.GetMatchesByTeamId(7, 12, 4, _cts.Token);
+
+            Assert.IsType<List<Match>>(matches);
+        }
+
+        [Fact]
         public async Task GetNextMatch()
         {
-            var match = await _api.GetNextMatchByLeagueTeam(4608, 40, _cts.Token);
+            var match = await _api.GetNextMatchByLeagueTeam(4741, 40, _cts.Token);
 
-            Assert.IsInstanceOf<Match>(match);
+            Assert.IsType<Match>(match);
         }
 
         #region DFB-Pokal helper
 
-        [Test]
+        [Fact]
         public async Task WriteTeamIdsToFile()
         {
             var teams = await _api.GetAvailableTeams("dfb", 2023, _cts.Token);
@@ -138,7 +169,7 @@ namespace OLDBLibCS.Tests
             WriteLineToFile(Path.Combine(folder, fileName), lines);
         }
 
-        [Test]
+        [Fact]
         public async Task WriteTeamStoreEntriesToFile()
         {
             var teams = await _api.GetAvailableTeams("dfb", 2023, _cts.Token);
