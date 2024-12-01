@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>OLDBLibCS</id>
+    <version>1.2.0</version>
+    <authors>kaolick</authors>
+    <description>An easy-to-use C# API for openligadb.de</description>
+    <tags>OpenligaDB.de API Bundesliga Soccer</tags>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/kaolick/OLDBLibCS</projectUrl>
+    <readme>README.md</readme>
+    <releaseNotes>
+      - Updated to latest openligadb.de API
+    </releaseNotes>
+  </metadata>
+</package>
