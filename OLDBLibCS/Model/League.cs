@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿#nullable enable
+using System.Text.Json.Serialization;
 
 namespace OLDBLibCS.Model
 {
@@ -8,15 +9,15 @@ namespace OLDBLibCS.Model
 		public int Id { get; set; }
 
         [JsonPropertyName("leagueName")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("leagueSeason")]
-        public string Season { get; set; }
+        public string? Name { get; set; }
 
         [JsonPropertyName("leagueShortcut")]
-        public string Shortcut { get; set; }
+        public string? Shortcut { get; set; }
+        
+        [JsonPropertyName("leagueSeason")]
+        public string? Season { get; set; }
 
         [JsonPropertyName("sport")]
-        public Sport Sport { get; set; }
+        public Sport? Sport { get; set; }
     }
 }

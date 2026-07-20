@@ -12,8 +12,8 @@ namespace OLDBLibCS.API
 {
     public class OLDBApi : IOLDBApi
     {
-        const string _baseUrl = "https://www.openligadb.de/";
-        readonly IOLDBApi _oldbApi;
+        private const string BaseUrl = "https://www.openligadb.de/";
+        private readonly IOLDBApi _oldbApi;
 
         public OLDBApi(double timeoutSeconds = 15)
         {
@@ -21,35 +21,85 @@ namespace OLDBLibCS.API
             var refitSettings = CreateRefitSettings();
             _oldbApi = RestService.For<IOLDBApi>(client, refitSettings);
         }
-
-        public async Task<List<Group>> GetAvailableGroups(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetAvailableGroups(leagueShortcut, leagueSeason, cancellationToken);
-        }
-
+        
         public async Task<List<League>> GetAvailableLeagues(CancellationToken cancellationToken)
         {
             return await _oldbApi.GetAvailableLeagues(cancellationToken);
         }
 
+        public async Task<List<League>> GetAvailableLeagues(int season, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetAvailableLeagues(season, cancellationToken);
+        }
+        
         public async Task<List<Sport>> GetAvailableSports(CancellationToken cancellationToken)
         {
             return await _oldbApi.GetAvailableSports(cancellationToken);
         }
 
-        public async Task<List<Team>> GetAvailableTeams(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        public async Task<Match> GetMatchData(int matchId, CancellationToken cancellationToken)
         {
-            return await _oldbApi.GetAvailableTeams(leagueShortcut, leagueSeason, cancellationToken);
+            return await _oldbApi.GetMatchData(matchId, cancellationToken);
+        }
+        
+        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, groupOrderId, cancellationToken);
+        }
+        
+        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, cancellationToken);
+        }
+        
+        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, string teamFilterString, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, teamFilterString,cancellationToken);
         }
 
-        public async Task<List<BlTableTeam>> GetBlTable(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        public async Task<List<Match>> GetMatchData(int team1Id, int team2Id, CancellationToken cancellationToken)
         {
-            return await _oldbApi.GetBlTable(leagueShortcut, leagueSeason, cancellationToken);
+            return await _oldbApi.GetMatchData(team1Id, team2Id, cancellationToken);
         }
-
+        
+        public async Task<string> GetLastChangeDate(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetLastChangeDate(leagueShortcut, leagueSeason, groupOrderId, cancellationToken);
+        }
+        
+        public async Task<Match> GetNextMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetNextMatchByLeagueTeam(leagueId, teamId, cancellationToken);
+        }
+        
+        public async Task<Match> GetNextMatchByLeagueShortcut(string leagueShortcut, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetNextMatchByLeagueShortcut(leagueShortcut, cancellationToken);
+        }
+        
+        public async Task<Match> GetLastMatchByLeagueShortcut(string leagueShortcut, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetLastMatchByLeagueShortcut(leagueShortcut, cancellationToken);
+        }
+        
+        public async Task<Match> GetLastMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetLastMatchByLeagueTeam(leagueId, teamId, cancellationToken);
+        }
+        
         public async Task<Group> GetCurrentGroup(string leagueShortcut, CancellationToken cancellationToken)
         {
             return await _oldbApi.GetCurrentGroup(leagueShortcut, cancellationToken);
+        }
+
+        public async Task<List<ResultInfo>> GetResultInfos(int leagueId, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetResultInfos(leagueId, cancellationToken);
+        }
+        
+        public async Task<List<Group>> GetAvailableGroups(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetAvailableGroups(leagueShortcut, leagueSeason, cancellationToken);
         }
 
         public async Task<List<GoalGetter>> GetGoalGetters(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
@@ -57,49 +107,19 @@ namespace OLDBLibCS.API
             return await _oldbApi.GetGoalGetters(leagueShortcut, leagueSeason, cancellationToken);
         }
 
-        //public async Task<List<BlTableTeam>> GetGroupTable(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
-        //{
-        //    return await _oldbApi.GetGroupTable(leagueShortcut, leagueSeason, cancellationToken);
-        //}
-
-        public async Task<string> GetLastChangeDate(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken)
+        public async Task<List<Team>> GetAvailableTeams(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
         {
-            return await _oldbApi.GetLastChangeDate(leagueShortcut, leagueSeason, groupOrderId, cancellationToken);
+            return await _oldbApi.GetAvailableTeams(leagueShortcut, leagueSeason, cancellationToken);
+        }
+        
+        public async Task<List<BlTableTeam>> GetBlTable(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
+        {
+            return await _oldbApi.GetBlTable(leagueShortcut, leagueSeason, cancellationToken);
         }
 
-        public async Task<Match> GetLastMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken)
+        public async Task<List<BlTableTeam>> GetGroupTable(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
         {
-            return await _oldbApi.GetLastMatchByLeagueTeam(leagueId, teamId, cancellationToken);
-        }
-
-        public async Task<Match> GetLastMatchByLeagueShortcut(string leagueShortcut, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetLastMatchByLeagueShortcut(leagueShortcut, cancellationToken);
-        }
-
-        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, string teamFilterString, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, teamFilterString,cancellationToken);
-        }
-
-        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, cancellationToken);
-        }
-
-        public async Task<List<Match>> GetMatchData(string leagueShortcut, int leagueSeason, int groupOrderId, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetMatchData(leagueShortcut, leagueSeason, groupOrderId, cancellationToken);
-        }
-
-        public async Task<Match> GetMatchData(int matchId, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetMatchData(matchId, cancellationToken);
-        }
-
-        public async Task<List<Match>> GetMatchData(int team1Id, int team2Id, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetMatchData(team1Id, team2Id, cancellationToken);
+            return await _oldbApi.GetGroupTable(leagueShortcut, leagueSeason, cancellationToken);
         }
 
         public async Task<List<Match>> GetMatchesByTeam(string teamFilterstring, int weekCountPast, int weekCountFuture, CancellationToken cancellationToken)
@@ -112,31 +132,16 @@ namespace OLDBLibCS.API
             return await _oldbApi.GetMatchesByTeamId(teamId, weekCountPast, weekCountFuture, cancellationToken);
         }
 
-        public async Task<Match> GetNextMatchByLeagueTeam(int leagueId, int teamId, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetNextMatchByLeagueTeam(leagueId, teamId, cancellationToken);
-        }
-
-        public async Task<Match> GetNextMatchByLeagueShortcut(string leagueShortcut, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetNextMatchByLeagueShortcut(leagueShortcut, cancellationToken);
-        }
-
-        public async Task<List<ResultInfo>> GetResultInfos(int leagueId, CancellationToken cancellationToken)
-        {
-            return await _oldbApi.GetResultInfos(leagueId, cancellationToken);
-        }
-
-        HttpClient CreateHttpClient(double timeoutSeconds)
+        private HttpClient CreateHttpClient(double timeoutSeconds)
         {
             return new HttpClient
             {
-                BaseAddress = new Uri(_baseUrl),
+                BaseAddress = new Uri(BaseUrl),
                 Timeout = TimeSpan.FromSeconds(timeoutSeconds)
             };
         }
 
-        RefitSettings CreateRefitSettings()
+        private RefitSettings CreateRefitSettings()
         {
             var jsonSettings = new JsonSerializerOptions
             {
