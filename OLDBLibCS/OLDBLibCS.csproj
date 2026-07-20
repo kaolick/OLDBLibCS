@@ -16,6 +16,7 @@
     <Description>An easy-to-use C# API for openligadb.de</Description>
     <Summary>An easy-to-use C# API for openligadb.de</Summary>
     <PackageTags>OpenligaDB.de API Bundesliga Soccer</PackageTags>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
