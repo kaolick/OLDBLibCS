@@ -6,8 +6,8 @@ namespace OLDBLibCS.Tests
 {
     public class ApiTests
     {
-        readonly OLDBApi _api;
-        readonly CancellationTokenSource _cts;
+        private readonly OLDBApi _api;
+        private readonly CancellationTokenSource _cts;
 
         public ApiTests()
         {
@@ -27,6 +27,14 @@ namespace OLDBLibCS.Tests
         public async Task GetAvailableLeagues()
         {
             var leagues = await _api.GetAvailableLeagues(_cts.Token);
+
+            Assert.IsType<List<League>>(leagues);
+        }
+        
+        [Fact]
+        public async Task GetAvailableLeaguesForSeason()
+        {
+            var leagues = await _api.GetAvailableLeagues(2026, _cts.Token);
 
             Assert.IsType<List<League>>(leagues);
         }
@@ -71,13 +79,13 @@ namespace OLDBLibCS.Tests
             Assert.IsType<List<GoalGetter>>(goalGetters);
         }
 
-        //[Fact]
-        //public async Task GetGroupTable()
-        //{
+        // [Fact]
+        // public async Task GetGroupTable()
+        // {
         //    var teams = await _api.GetGroupTable("bl1", 2023, _cts.Token);
 
-        //    Assert.IsType<List<BlTableTeam>>(teams);
-        //}
+        //     Assert.IsType<List<BlTableTeam>>(teams);
+        // }
 
         [Fact]
         public async Task GetLastChangeDate()
@@ -86,6 +94,22 @@ namespace OLDBLibCS.Tests
 
             var dateTime = DateTime.ParseExact(timestamp.Replace("\"", ""), "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
             Assert.IsType<DateTime>(dateTime);
+        }
+        
+        [Fact]
+        public async Task GetLastMatchByLeagueShortcut()
+        {
+            var match = await _api.GetLastMatchByLeagueShortcut("bl1", _cts.Token);
+            
+            Assert.IsType<Match>(match);
+        }
+        
+        [Fact]
+        public async Task GetLastMatchByLeagueTeam()
+        {
+            var match = await _api.GetLastMatchByLeagueTeam(4806, 9, _cts.Token);
+            
+            Assert.IsType<Match>(match);
         }
 
         [Fact]
@@ -145,11 +169,27 @@ namespace OLDBLibCS.Tests
         }
 
         [Fact]
-        public async Task GetNextMatch()
+        public async Task GetNextMatchByLeagueShortcut()
         {
-            var match = await _api.GetNextMatchByLeagueTeam(4741, 40, _cts.Token);
+            var match = await _api.GetNextMatchByLeagueShortcut("bl1", _cts.Token);
+            
+            Assert.IsType<Match>(match);
+        }
+
+        [Fact]
+        public async Task GetNextMatchByLeagueTeam()
+        {
+            var match = await _api.GetNextMatchByLeagueTeam(4937, 9, _cts.Token);
 
             Assert.IsType<Match>(match);
+        }
+
+        [Fact]
+        public async Task GetResultInfos()
+        {
+            var resultInfos = await _api.GetResultInfos(4806, _cts.Token);
+            
+            Assert.IsType<List<ResultInfo>>(resultInfos);
         }
 
         #region DFB-Pokal helper
