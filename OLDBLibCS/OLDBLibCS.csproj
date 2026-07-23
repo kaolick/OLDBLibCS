@@ -4,9 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>OLDBLibCS</PackageId>
     <Title>OLDBLibCS</Title>
-    <PackageVersion>1.3.0</PackageVersion>
+    <PackageVersion>2026.1.0</PackageVersion>
     <Authors>kaolick</Authors>
-    <Copyright>kaolick 2024</Copyright>
+    <Copyright>kaolick 2026</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
