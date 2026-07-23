@@ -24,6 +24,6 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="refit" Version="7.2.22" />
+    <PackageReference Include="Refit" Version="8.0.0" />
   </ItemGroup>
 </Project>
